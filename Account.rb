@@ -8,11 +8,14 @@ module Bank
       @balance = 1000 #inital balance of 1000
     end
 
-    def withdraw(withdraw_amount)
-
-     @balance = @balance - withdraw_amount
+    def withdraw(withdraw_amount, message= "Your balance cannot go below 0")
+      @balance = @balance - withdraw_amount
+      if @balance < 0
+        raise ArgumentError.new(message)#if balance withdraw goes below 0, raise error
+        @balance = @balance + withdraw_amount
+      end
       return @balance
-#if balance withdraw goes below 0, raise error
+
     end #withdraw method end
 
     def deposit(deposit_amount)
