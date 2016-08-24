@@ -3,7 +3,8 @@ module Bank
   class Account
     attr_accessor :id, :balance
 
-    def initialize(id, balance, empty_account = "We're sorry, but you cannot open an account without some money!") #should I put a balance argument here?
+    def initialize(id, balance, empty_account = "We're sorry, but you cannot open an account without some money!")
+
       @id = id
       @balance = balance
       if @balance <=  0
@@ -12,8 +13,9 @@ module Bank
     end
 
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
+
       if withdraw_amount > @balance
-        raise ArgumentError.new(message)#if balance withdraw goes below 0, raise error
+        raise ArgumentError.new(message) #raise error when balance drops below 0
       else
         @balance = @balance - withdraw_amount
         return @balance
