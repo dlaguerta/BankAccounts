@@ -1,4 +1,5 @@
 require 'CSV'
+#require_relative 'Owner.rb'
 module Bank
   class Account
     attr_accessor :id, :balance, :account_open_date
@@ -14,21 +15,31 @@ module Bank
 
     end #end initialize method
 
+    #returns a collection of Account instances, representing all of the Accounts described in the CSV. See below for the CSV file specifications
     def self.all
       accounts = []
       CSV.read("./support/accounts.csv").each do |line|
         accounts_hash = {}
-        accounts_hash[:id] = line[0]
+        accounts_hash[:id] = line[0].to_i
         accounts_hash[:balance] = line[1].to_f/100
         accounts_hash[:account_open_date] = line[2]
-      accounts << Bank::Account.new(accounts_hash)
-    end
+        accounts << Bank::Account.new(accounts_hash)
+      end
       return accounts
     end
 
+    #returns an instance of Account where the value of the id field in the CSV matches the passed parameter
+    def self.find(id)
+      self.all.each do |account|
+        if account.id == id
+          return account
+        end
+      end
+    end
 
 
-#DON'T TOUCH THIS YET
+    #DON'T TOUCH THIS YET
+    #method to withdraw money from an account
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
 
       if withdraw_amount > @balance
@@ -39,6 +50,7 @@ module Bank
       end
     end #withdraw method end
 
+    #method to deposit money into an account
     def deposit(deposit_amount)
       @balance = @balance + deposit_amount
       return @balance
@@ -47,10 +59,17 @@ module Bank
   end #Account class end
 end
 
-
-foots = Bank::Account.all
-puts foots
-
-foots.each do |a|
-  puts a.balance
-end
+#
+#
+# # big_foots = Bank::Account.all
+# # puts big_foots
+# foots = Bank::Account.find(1217)
+# # puts foots
+# # puts foots.balance
+# # puts foots.withdraw(20)
+# #
+#
+# puts "Foots' Account ID: #{foots.id}. Starting balance: $#{foots.balance}"
+# puts "Need to buy beer, withdrew $50. Balance after withdrawal: #{foots.withdraw(50)}"
+# puts "Got paid, deposited $20! Balance = $#{foots.deposit(20)}"
+# puts "Final balance: $#{foots.balance}"
