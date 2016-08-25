@@ -1,10 +1,9 @@
 #SavingsAccount.rb
-#module Bank
+module Bank
 # create a class called SavingsAccount
-class SavingsAccount #< Account
-#   Inherit the behavior of the Account class (add the < Account )
-#   Attributes of the SavingsAccount:
-attr_accessor :balance
+class SavingsAccount < Account
+
+attr_accessor :balance #add :id here?
 
   def initialize(id, balance, minimum_account= "Your savings account must start with at least $10!")
     @id = id
@@ -27,7 +26,12 @@ attr_accessor :balance
       return @balance
     end
   end
+
+#add method for adding the interest rate
+  def add_interest(rate)
+    interest_amount = @balance * rate/100
+    return @balance = @balance + interest_amount
+  end
 end
-#     - Cannot go below $10, raises an argument error. This includes subtracting the original $2 when calling the method
-#       -return the original balance
-#end
+
+end
