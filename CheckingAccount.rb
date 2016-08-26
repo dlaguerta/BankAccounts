@@ -4,8 +4,6 @@ module Bank
     attr_accessor :check_count
 
     #think about addding a constant for minimum balance of -10
-    #create CheckingAccount class with inherit Account class
-    #create withdrawal method
 
 
     def initialize(id, balance) #fix here to use super and inherit id from Account class
@@ -14,7 +12,7 @@ module Bank
       @check_count = 0
     end
 
-#I don't even need this here anymore?
+#withdraw method that subtracts 1 for withdraw fee
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
       withdraw_amount = withdraw_amount + 1
       super
