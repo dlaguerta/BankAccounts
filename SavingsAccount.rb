@@ -1,4 +1,4 @@
-#SavingsAccount.rb
+require_relative "Account"
 module Bank
 # create a class called SavingsAccount
 class SavingsAccount < Account

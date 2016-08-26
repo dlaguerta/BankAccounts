@@ -42,10 +42,11 @@ module Bank
     #method to withdraw money from an account
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
 
-      if withdraw_amount > @balance
-        raise ArgumentError.new(message) #raise error when balance drops below 0
+      if (withdraw_amount + 1) > @balance
+        raise Exception.new(message)
+        return @balance
       else
-        @balance = @balance - withdraw_amount
+        @balance = @balance - withdraw_amount - 1
         return @balance
       end
     end #withdraw method end
@@ -58,18 +59,3 @@ module Bank
 
   end #Account class end
 end
-
-#
-#
-# # big_foots = Bank::Account.all
-# # puts big_foots
-# foots = Bank::Account.find(1217)
-# # puts foots
-# # puts foots.balance
-# # puts foots.withdraw(20)
-# #
-#
-# puts "Foots' Account ID: #{foots.id}. Starting balance: $#{foots.balance}"
-# puts "Need to buy beer, withdrew $50. Balance after withdrawal: #{foots.withdraw(50)}"
-# puts "Got paid, deposited $20! Balance = $#{foots.deposit(20)}"
-# puts "Final balance: $#{foots.balance}"
