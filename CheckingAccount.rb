@@ -16,14 +16,8 @@ module Bank
 
 #I don't even need this here anymore?
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
+      withdraw_amount = withdraw_amount + 1
       super
-      # @balance = @balance - 1 - withdraw_amount
-      # if @balance < 0
-      #   puts message
-      #   return @balance = @balance + 1 + withdraw_amount
-      # else
-      #   return @balance
-      # end
     end
 
     def withdraw_using_check(amount, message = "Don't go below $-10")

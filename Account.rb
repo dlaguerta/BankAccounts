@@ -42,11 +42,11 @@ module Bank
     #method to withdraw money from an account
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
 
-      if (withdraw_amount + 1) > @balance
-        raise Exception.new(message)
+      if withdraw_amount > @balance
+        puts message
         return @balance
       else
-        @balance = @balance - withdraw_amount - 1
+        @balance = @balance - withdraw_amount
         return @balance
       end
     end #withdraw method end
