@@ -4,16 +4,25 @@ module Bank
   class Account
     attr_accessor :id, :balance, :account_open_date
 
-    def initialize(accounts_hash, empty_account = "We're sorry, but you cannot open an account without some money!")
-      @id = accounts_hash[:id]
-      @balance = accounts_hash[:balance]
-      @account_open_date = accounts_hash[:account_open_date]
-
-      if @balance <=  0
-        raise ArgumentError.new(empty_account)
+    def initialize(id, balance,  minimum_account= "Your savings account cannot go below $10!")
+      @id = id
+      @balance = balance
+      if @balance <=  self.class::MINIMUM_BALANCE
+        raise ArgumentError.new(minimum_account)
       end
+    end
 
-    end #end initialize method
+#second wave initialize method to take in CSV file
+    # def initialize(accounts_hash, empty_account = "We're sorry, but you cannot open an account without some money!")
+    #   @id = accounts_hash[:id]
+    #   @balance = accounts_hash[:balance]
+    #   @account_open_date = accounts_hash[:account_open_date]
+    #
+    #   if @balance <=  self.class::MINIMUM_BALANCE
+    #     raise ArgumentError.new(empty_account)
+    #   end
+    #
+    # end #end initialize method
 
     #returns a collection of Account instances, representing all of the Accounts described in the CSV. See below for the CSV file specifications
     def self.all
@@ -36,9 +45,6 @@ module Bank
         end
       end
     end
-
-
-    #DON'T TOUCH THIS YET
     #method to withdraw money from an account
     def withdraw(withdraw_amount, message = "Your balance cannot go below 0")
 

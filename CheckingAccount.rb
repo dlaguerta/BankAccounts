@@ -1,14 +1,13 @@
 require_relative "Account"
 module Bank
   class CheckingAccount < Account
+    MINIMUM_BALANCE = 0
     attr_accessor :check_count
 
-    #think about addding a constant for minimum balance of -10
-
-
-    def initialize(id, balance) #fix here to use super and inherit id from Account class
-      @id = id
-      @balance = balance
+    def initialize(id, balance)
+      super
+      # @id = id
+      # @balance = balance
       @check_count = 0
     end
 
@@ -34,6 +33,7 @@ module Bank
         end
       end
     end
+
     #reset_checks -- resets the checks to zero
     def reset_checks
       @check_count = 0
