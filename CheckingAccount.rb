@@ -41,3 +41,42 @@ module Bank
 
   end #CheckingAccount
 end #bank
+
+
+#Code I run in Terminal to test
+=begin
+foots = Bank::CheckingAccount.new(1234, 400)
+foots.withdraw(300)
+ => 99 
+foots.check_count
+ => 0
+foots.withdraw_using_check(5)
+ => 94
+foots.check_count
+ => 1
+foots.withdraw_using_check(5)
+ => 89
+foots.withdraw_using_check(5)
+ => 84
+foots.withdraw_using_check(5)
+ => 79
+foots.withdraw_using_check(5)
+ => 72
+foots.withdraw_using_check(70)
+ => 0
+foots.withdraw_using_check(5)
+ => -7
+foots.withdraw_using_check(5)
+# ArgumentError: Don't go below $-10
+	from /Users/dlaguerta/ada/project-forks/BankAccounts/CheckingAccount.rb:26:in `withdraw_using_check'
+	from (irb):12
+	from /Users/dlaguerta/.rvm/rubies/ruby-2.3.1/bin/irb:11:in `<main>'
+foots.balance
+ => -7
+foots.deposit(500)
+ => 493
+foots.reset_checks
+ => 0
+foots.withdraw(80)
+ => 412
+=end
