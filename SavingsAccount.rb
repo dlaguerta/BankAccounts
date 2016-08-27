@@ -37,16 +37,15 @@ end
 
 
 #Stuff run in terminal
-=begin
 foot_saves = Bank::SavingsAccount.new("FootsMoney", 600)
- => #<Bank::SavingsAccount:0x007f851c8e7120 @id="FootsMoney", @balance=600>
-2.3.1 :002 > foot_saves.withdraw(100)
- => 498
- 2.3.1 :004 > foot_saves.add_interest(20)
-  => 597
- 2.3.1 :005 > foot_saves.balance
-  => 597
-2.3.1 :007 > foot_saves.withdraw(590)
-Your savings account cannot go below $10!
-  => 597
-=end
+ #=> #<Bank::SavingsAccount:0x007f851c8e7120 @id="FootsMoney", @balance=600>
+foot_saves.withdraw(100)
+ #=> 498
+foot_saves.add_interest(20)
+#  => 597
+foot_saves.balance
+#  => 597
+foot_saves.withdraw(590)
+#Your savings account cannot go below $10!
+#  => 597
+foots.add_interest(20)
